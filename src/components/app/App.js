@@ -3,7 +3,7 @@ import AppLayout from "../templates/app-template";
 import {Layout, PageHeader} from "antd";
 import "./app.sass";
 import PostList from "../organisms/post-list";
-import SeachPanel from "../molecules/search-panel";
+import SeachPanel from "../molecules/add-panel";
 import PostStatusFilter from "../molecules/post-status-filter";
 
 const {Header, Footer, Content} = Layout;

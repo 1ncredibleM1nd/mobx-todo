@@ -5,7 +5,7 @@ import todoStore from "../../store/todos";
 import {observer} from "mobx-react-lite";
 
 const PostList = observer(() => {
-        const {todos} = todoStore;
+        const {visiblePosts, todos, filter} = todoStore;
         const elements = todos.map((item) => {
             return (
                 <div key={item.id} className="list-group-item">
@@ -13,7 +13,14 @@ const PostList = observer(() => {
                 </div>
             );
         });
-        return <ul className="app-list list-group">{elements}</ul>;
+        const updatedElements = visiblePosts.map((item) => {
+            return (
+                <div key={item.id} className="list-group-item">
+                    <PostListItem {...item} />
+                </div>
+            );
+        });
+        return <ul className="app-list list-group">{visiblePosts.length === 0 ? elements : updatedElements}</ul>;
     })
 ;
 

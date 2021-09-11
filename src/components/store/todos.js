@@ -6,6 +6,9 @@ class todoStore {
         {label: "That is so good", important: false, liked: false, id: 2},
         {label: "I need a break...", important: false, liked: false, id: 3}]
 
+    visiblePosts = []
+    filter = ''
+
     constructor() {
         makeAutoObservable(this);
     }
@@ -36,6 +39,30 @@ class todoStore {
         this.todos = this.todos.map(todo => todo.id === id ? {
             ...todo, important: !todo.important
         } : todo)
+    }
+
+    onUpdateSearch(term) {
+
+        if (term.length === 0) {
+            this.visiblePosts = this.todos;
+        }
+
+        this.visiblePosts = this.todos.filter((item) => {
+            return item.label.indexOf(term) > -1;
+        })
+
+    }
+
+    activateFilter(filter) {
+        this.filter = filter
+    }
+
+    filterPost(filter) {
+        if (filter === 'liked') {
+            this.visiblePosts = this.todos.filter(todo => todo.liked)
+        } else {
+            this.visiblePosts = this.todos
+        }
     }
 
 

@@ -1,20 +1,16 @@
 import {React, useState} from 'react';
 import {Button, Input} from 'antd'
 import todos from "../../store/todos";
-import './search-panel.sass'
+import './add-panel.sass'
 
 
-const SearchPanel = () => {
+const AddPanel = () => {
     const [text, setText] = useState('');
     const createNewTodo = (e) => {
         e.preventDefault();
         todos.addTodo(text);
     }
-
-
     return (
-
-
         <form className='search-panel' onSubmit={createNewTodo}>
             <Input placeholder="Введите новое задание" value={text} onChange={(e) => setText(e.target.value)}/>
             <Button type="primary" onClick={createNewTodo}>
@@ -25,4 +21,4 @@ const SearchPanel = () => {
 }
 
 
-export default SearchPanel;
+export default AddPanel;
